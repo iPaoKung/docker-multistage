@@ -22,7 +22,7 @@ type Version struct {
 
 func init() {
 	viper.SetConfigName("config")
-	viper.AddConfigPath("config")
+	viper.AddConfigPath("/config")
 	viper.AutomaticEnv()
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
