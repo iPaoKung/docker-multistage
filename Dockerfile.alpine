@@ -10,9 +10,10 @@ RUN GOOS=linux GOARCH=386 go build -o goapp
 
 # final stage
 FROM alpine
+WORKDIR /config
+COPY config.yaml .
 WORKDIR /app
 COPY --from=build-env /go/src/service/goapp /app
-COPY config.yaml .
 RUN ls -l .
 RUN pwd
 ENTRYPOINT ./goapp
