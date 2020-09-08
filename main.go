@@ -66,10 +66,8 @@ func callDefault(c echo.Context) error {
 			DisableKeepAlives: true,
 			TLSClientConfig:   &tls.Config{InsecureSkipVerify: true},
 		},
-		// Timeout: time.Second * 5,
 	}
 
-	// fmt.Println("request to:", url)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Printf("The HTTP custom new request failed with error %s\n", err)
@@ -90,19 +88,6 @@ func callDefault(c echo.Context) error {
 	defer response.Body.Close()
 	go cal()
 	cal()
-
-	// b, err := httputil.DumpRequest(req, true)
-	// if err != nil {
-	// 	log.Println(err)
-	// } else {
-	// 	fmt.Println("request:", string(b))
-	// }
-	// b, err = httputil.DumpResponse(response, true)
-	// if err != nil {
-	// 	log.Println(err)
-	// } else {
-	// 	fmt.Println("response:", string(b))
-	// }
 
 	return c.JSON(response.StatusCode, nil)
 }
